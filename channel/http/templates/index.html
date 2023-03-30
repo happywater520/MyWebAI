@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Title -->
+    <title>小水的小世界</title><!-- Bootstrap Css -->
+    <!-- <link href="./static/1.css" rel="stylesheet" /> -->
+    <style>
+        body {
+            background-color: #F5F5F5;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .chatbox {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            overflow-y: scroll;
+            height: 500px;
+        }
+
+        .message.right {
+            text-align: right;
+        }
+
+        .message p{
+            margin: 0;
+            padding: 10px;
+            background-color: #eee;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            max-width: 60%;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+
+        .inputbox {
+            margin: 20px auto;
+            max-width: 80%;
+            display: flex;
+        }
+
+        .inputbox input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+        }
+
+        .inputbox button {
+            background-color: #abe7f1;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 0 30px 30px 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="">
+
+    <body class="">
+        <h1>小水定制AI</h1>
+        <div class="chatbox" id="chatbox">
+            <div class="message right">
+                <p>我是小水定制的AI</p>
+            </div>
+            <img id="image" />
+            <!-- 其他消息内容 -->
+            <div class="no-border">
+                <div id="chat" class="conv-form-wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="inputbox">
+            <!--  -->
+            <input id="userInput" type="text" placeholder="请输入消息..." id="message">
+            <button  class="submit" type="submit">发送</button>
+        </div>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.2.12/marked.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/autosize.js/6.0.1/autosize.min.js"></script>
+        <script src="./static/1.js"></script>
+        <script>
+            var rollbackTo = false;
+            var originalState = false;
+            function storeState(a) {
+                rollbackTo = a.current
+            }
+            function rollback(a) {
+                if (rollbackTo != false) {
+                    if (originalState == false) {
+                        originalState = a.current.next
+                    }
+                    a.current.next = rollbackTo
+                }
+            }
+            function restore(a) {
+                if (originalState != false) {
+                    a.current.next = originalState
+                }
+            }
+            jQuery(function (a) {
+                var b = a("#chat").convform()
+            });
+        </script>
+    </body>
+
+</html>
